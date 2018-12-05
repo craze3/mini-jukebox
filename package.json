@@ -8,7 +8,8 @@
     "angular-animate": "^1.7.5",
     "angular-aria": "^1.7.5",
     "angular-material": "^1.1.10",
-    "angular-messages": "^1.7.5"
+    "angular-messages": "^1.7.5",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "webpack": "^4.27.0",
@@ -16,7 +17,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-	"build": "webpack"
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
