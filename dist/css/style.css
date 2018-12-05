@@ -3,3 +3,12 @@
   margin: 20px;
   background-color: #FFF2E0; 
 }
+
+.md-subhead { 
+	font-size: 22px !important; 
+	color: #000 !important;
+}
+.md-headline { 
+	color: #0000008a !important;
+	font-size: 28px !important; 
+}
