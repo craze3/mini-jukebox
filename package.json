@@ -10,9 +10,13 @@
     "angular-material": "^1.1.10",
     "angular-messages": "^1.7.5"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "webpack": "^4.27.0",
+    "webpack-cli": "^3.1.2"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+	"build": "webpack"
   },
   "repository": {
     "type": "git",
