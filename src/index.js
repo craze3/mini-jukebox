@@ -19,7 +19,9 @@ var angular = require('angular');
 
   angular.module('MyApp', ['ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
 	
-	/* --- MAIN CONTROLLER --- */
+	//*****************************************************************************
+	// Main Controller
+	//*****************************************************************************
 	.controller('AppCtrl',['$scope',function($scope){
 		$scope.currentNavItem = 'page1';
 
