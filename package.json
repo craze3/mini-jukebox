@@ -1,0 +1,27 @@
+{
+  "name": "mini-jukebox",
+  "version": "1.0.0",
+  "description": "A mini Rockbot app ",
+  "main": "index.js",
+  "dependencies": {
+    "angular": "^1.7.5",
+    "angular-animate": "^1.7.5",
+    "angular-aria": "^1.7.5",
+    "angular-material": "^1.1.10",
+    "angular-messages": "^1.7.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/craze3/mini-jukebox.git"
+  },
+  "author": "Seena Zandipour",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/craze3/mini-jukebox/issues"
+  },
+  "homepage": "https://github.com/craze3/mini-jukebox#readme"
+}
