@@ -51,15 +51,20 @@
 		  Disable Second Tab
 		</md-checkbox>
 		-->
-		<section ng-if="page == 1">
+		
+		<section ng-if="!data">
+			<center><h1>LOADING...</h1></center>
+		</section>
+		
+		<section ng-if="data && page == 1">
 		<md-card md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch>
 			<md-card-title>
 			  <md-card-title-text>				
-				<span class="md-subhead">Radiohead</span>
-				<span class="md-headline">Karma Police</span>
+				<span class="md-subhead"><b>{{data.aNowPlaying.sArtist}}</b></span>
+				<span class="md-headline">{{data.aNowPlaying.sSong}}</span>
 			  </md-card-title-text>
 			  <md-card-title-media>
-				<div class="md-media-sm card-media" style="background: url('https://material.angularjs.org/latest/img/logo.svg');"></div>
+				<div class="md-media-sm card-media" style="background: url('{{data.aNowPlaying.sArtwork}}');"></div>
 			  </md-card-title-media>
 			</md-card-title>
 			<!--
@@ -73,20 +78,74 @@
 	  
 		<md-list flex>
 			<md-subheader class="md-no-sticky">Up Next...</md-subheader>
-			<md-list-item class="md-3-line" ng-repeat="item in todos" ng-click="null">
-			  <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" />
+			<md-list-item class="md-3-line" ng-repeat="item in data.aQueue" ng-click="null">
+			  <img ng-src="{{item.sArtwork}}?{{$index}}" class="md-avatar" alt="{{item.sArtist}}" />
 			  <div class="md-list-item-text" layout="column">
-				<h3>{{ item.who }}</h3>
+				<h3><b>{{ item.sArtist }}</b></h3>
 				<!--<h4>{{ item.what }}</h4>-->
-				<p>{{ item.notes }}</p>
+				<p>{{ item.sSong }}</p>
+				<div class="md-secondary green-text"><span ng-if="item.iLikes > 0">+</span>{{ item.iLikes }}</div>
 			  </div>
 			</md-list-item>
 		</md-list>
 		</section>
 		
-		<section ng-if="page == 2">
-		<h1> TESTING ! </h1>
-		<p ng-bind="data"></p>
+		<section ng-if="data && page == 2" class="layout-padding">
+		<!--
+		<h2><u>Top Users</u></h2>
+		 <md-grid-list
+			md-cols-gt-md="3" md-cols="3" md-cols-md="3"
+			md-row-height-gt-md="1:1" md-row-height="1:1"
+			md-gutter-gt-md="16px" md-gutter-md="8px" md-gutter="4px">
+		  <md-grid-tile
+			  ng-repeat="user in data.aTopUsers"
+			  md-colspan-gt-sm="1"
+			  md-rowspan-gt-sm="1">
+			  <img ng-src="{{user.sUserImage}}" class="user-image"/>
+			  <br />
+			  <div>{{user.sUser}}</div>
+		  </md-grid-tile>
+		</md-grid-list>
+		-->
+		
+		<h2><u>Top Users</u></h2>
+		<center>
+		<div layout="row" layout-wrap>
+			<div flex="30" ng-repeat="user in data.aTopUsers">
+				<img ng-src="{{user.sUserImage}}" class="user-image"/>
+				<br />
+				<div>{{user.sUser}}</div>
+			</div>
+		</div>
+		</center>
+		
+		<h2><u>Top Artists</u></h2>
+		<center>
+		<div layout="row" layout-wrap>
+			<div flex="30" ng-repeat="artist in data.aTopArtists">
+				<img ng-src="{{artist.sArtistImage}}" class="user-image"/>
+				<br />
+				<div>{{artist.sArtist}}</div>
+			</div>
+		</div>
+		</center>
+		
+		<!--
+		<h2><u>Top Artists</u></h2>
+		 <md-grid-list
+			md-cols-gt-md="3" md-cols="3" md-cols-md="3"
+			md-row-height-gt-md="1:1" md-row-height="1:1"
+			md-gutter-gt-md="16px" md-gutter-md="8px" md-gutter="4px">
+		  <md-grid-tile
+			  ng-repeat="artist in data.aTopArtists"
+			  md-colspan-gt-sm="1"
+			  md-rowspan-gt-sm="1">
+			  <img ng-src="{{artist.sArtistImage}}" class="user-image"/>
+			  <br />
+			  <div>{{artist.sArtist}}</div>
+		  </md-grid-tile>
+		</md-grid-list>
+		-->
 		</section>
 		
 		<md-nav-bar md-no-ink-bar="disableInkBar" md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">

@@ -18,17 +18,17 @@
 	.factory('Poller', ['$http', '$timeout', function($http, $timeout) {
 	  var data = {};
 	  
-	  function poller(){
+	  function poller(success){
 		$http.get('https://api.rockbot.com/v2/venue/10').then(function(r) {
 		  data = r.data;
-		  console.log(data);
+		  success(data);
+		  //console.log(data);
 		  $timeout(poller, 30000);
-		});      
+		}).catch(function (err) {});
 	  };
 	  poller();
 
 	  return {
-		data: data,
 		poller: poller
 	  };
 	}])
@@ -39,8 +39,12 @@
 	.controller('AppCtrl',['$scope', 'Poller', function($scope, Poller){
 		$scope.page = 1;
 		
-		$scope.data = Poller.data;
-		
+		//$scope.data = Poller.data;
+		Poller.poller(function(data) {
+			$scope.data = data;
+			console.log(data);
+		});
+			
 		var imagePath = "https://material.angularjs.org/latest/img/logo.svg";
 		 $scope.todos = [
 		  {
