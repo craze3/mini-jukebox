@@ -5,43 +5,41 @@
 /*	   		By: Seena Zandipour (craze3@gmail.com)
 /*
 /* --------------------------------------------------- */
-
+/*
 (function() {
   'use strict';
+*/
 
-  angular.module('MyApp', ['ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
-  
-	.run(['$http', function($http) {
-		//$http.defaults.headers.common.Authorization = 'Basic YmVlcDpib29w';
-	}])
+  var app = angular.module('MyApp', ['ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
 	
 	//******************************************************************************/
 	// API Polling Service
 	//******************************************************************************/
-	.factory('Poller', function($http, $timeout) {
+	.factory('Poller', ['$http', '$timeout', function($http, $timeout) {
 	  var data = {};
 	  
-	  var poller = function() {
+	  function poller(){
 		$http.get('https://api.rockbot.com/v2/venue/10').then(function(r) {
 		  data = r.data;
 		  console.log(data);
-		  $timeout(poller, 1000);
+		  $timeout(poller, 30000);
 		});      
 	  };
 	  poller();
 
 	  return {
-		data: data
+		data: data,
+		poller: poller
 	  };
-	})
+	}])
 
 	//******************************************************************************/
 	// Main Controller
 	//******************************************************************************/
-	.controller('AppCtrl',['$scope', function($scope, Poller){
+	.controller('AppCtrl',['$scope', 'Poller', function($scope, Poller){
 		$scope.page = 1;
 		
-		//$scope.data = Poller.data;
+		$scope.data = Poller.data;
 		
 		var imagePath = "https://material.angularjs.org/latest/img/logo.svg";
 		 $scope.todos = [
@@ -92,4 +90,4 @@
 		
 	}]);
 
-})();
+//})();
