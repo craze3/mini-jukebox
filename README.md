@@ -1,7 +1,7 @@
 # mini-jukebox
 
 ### Description
-This is a simple AngularJS app that pulls API data from Rockbot and displays it in an intuitive way. By default, it pulls data from the jukebox setup at Rockbot HQ in Oakland, CA. 
+This is a simple AngularJS app that pulls API data from Rockbot and displays it in an intuitive way. By default, it pulls data from the jukebox setup at Rockbot HQ in Oakland, CA. **Live Demo:** [https://altwallet.io/jukebox][]
 
 ### Features
 * See current "Now Playing" song
