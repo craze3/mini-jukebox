@@ -56,15 +56,6 @@
 							<div class="md-secondary green-text"><span ng-if="item.iLikes > 0">+</span>{{ item.iLikes }}</div>
 						</div>
 					</md-list-item>
-					
-					<md-list-item class="md-3-line" ng-repeat="item in data.aQueue" ng-click="null">
-						<img ng-src="{{item.sArtwork}}?{{$index}}" class="md-avatar" alt="{{item.sArtist}}" />
-						<div class="md-list-item-text" layout="column">
-							<h3><b>{{ item.sArtist }}</b></h3>
-							<p>{{ item.sSong }}</p>
-							<div class="md-secondary green-text"><span ng-if="item.iLikes > 0">+</span>{{ item.iLikes }}</div>
-						</div>
-					</md-list-item>
 				</md-list>
 			</section>
 			
