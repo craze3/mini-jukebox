@@ -15,6 +15,7 @@ This is a simple AngularJS app that pulls API data from Rockbot and displays it 
 * See upcoming songs + # of votes
 * See top users/DJ's
 * See top played artists
+* Loading spinners
 * Checks for new data every 30 seconds
 * Auto-updating UI
 
