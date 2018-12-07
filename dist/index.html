@@ -1,185 +1,117 @@
 <!DOCTYPE html>
 <html ng-app="MyApp">
-	<head>
-		<meta charset="utf-8">
-		<title>Rockbot (Seena Remix)</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="icon" type="image/x-icon" href="img/favicon.ico">
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		<link rel="stylesheet" href="https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.10/angular-material.css">
-		<link rel="stylesheet" href="css/style.css">
-		
-	</head>
-	<body>
-
-	<div ng-controller="AppCtrl" ng-cloak="" class="navBardemoBasicUsage">
-	  <md-content class="">
-	  
-	      <md-toolbar class="md-hue-4">		
-
-		  <div class="md-toolbar-tools">
-			<md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
-			  <!--<md-icon md-svg-icon="img/icons/menu.svg"></md-icon>-->
-			  <img src="img/logo.png" style="height: 100%;" />
-			</md-button>
-			
-			<h2 flex md-truncate>mini rockbot</h2>
-			
-			<!--
-			<md-button class="md-icon-button" aria-label="Favorite">
-			  <md-icon md-svg-icon="img/icons/favorite.svg" class="favorite-icon"></md-icon>
-			</md-button>
-			-->
-
-			<md-button class="md-icon-button" aria-label="More">
-			  <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
-			</md-button>
-		  </div>
-		</md-toolbar>
-		
-		
-		<!--
-		<div class="ext-content">
-		  External content for `<span>{{currentNavItem}}</span>`.
-		</div>
-		-->
-
-		<!--
-		<md-checkbox ng-model="disableInkBar">Disable Ink Bar</md-checkbox>
-
-		<md-checkbox ng-model="secondTabDisabled" aria-label="Disable Second Tab" style="margin: 5px;">
-		  Disable Second Tab
-		</md-checkbox>
-		-->
-		
-		<section ng-if="!data">
-			<center><img src="img/loader.gif" class="loader" /></center>
-		</section>
-		
-		<section ng-if="data && page == 1">
-		<md-card md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch>
-			<md-card-title>
-			  <md-card-title-text>				
-				<span class="md-subhead"><b>{{data.aNowPlaying.sArtist}}</b></span>
-				<span class="md-headline">{{data.aNowPlaying.sSong}}</span>
-			  </md-card-title-text>
-			  <md-card-title-media>
-				<div class="md-media-sm card-media" style="background: url('{{data.aNowPlaying.sArtwork}}');"></div>
-			  </md-card-title-media>
-			</md-card-title>
-			<!--
-			<md-card-actions layout="row" layout-align="end center">
-			  <md-button>Action 1</md-button>
-			  <md-button>Action 2</md-button>
-			</md-card-actions>
-			-->
-      </md-card>
-	  
-	  
-		<md-list flex>
-			<md-subheader class="md-no-sticky">Up Next...</md-subheader>
-			<md-list-item class="md-3-line" ng-repeat="item in data.aQueue" ng-click="null">
-			  <img ng-src="{{item.sArtwork}}?{{$index}}" class="md-avatar" alt="{{item.sArtist}}" />
-			  <div class="md-list-item-text" layout="column">
-				<h3><b>{{ item.sArtist }}</b></h3>
-				<!--<h4>{{ item.what }}</h4>-->
-				<p>{{ item.sSong }}</p>
-				<div class="md-secondary green-text"><span ng-if="item.iLikes > 0">+</span>{{ item.iLikes }}</div>
-			  </div>
-			</md-list-item>
-		</md-list>
-		</section>
-		
-		<section ng-if="data && page == 2" class="layout-padding">
-		<!--
-		<h2><u>Top Users</u></h2>
-		 <md-grid-list
-			md-cols-gt-md="3" md-cols="3" md-cols-md="3"
-			md-row-height-gt-md="1:1" md-row-height="1:1"
-			md-gutter-gt-md="16px" md-gutter-md="8px" md-gutter="4px">
-		  <md-grid-tile
-			  ng-repeat="user in data.aTopUsers"
-			  md-colspan-gt-sm="1"
-			  md-rowspan-gt-sm="1">
-			  <img ng-src="{{user.sUserImage}}" class="user-image"/>
-			  <br />
-			  <div>{{user.sUser}}</div>
-		  </md-grid-tile>
-		</md-grid-list>
-		-->
-		
-		<h2><u>Top Users</u></h2>
-		<center>
-		<div layout="row" layout-wrap>
-			<div flex="30" ng-repeat="user in data.aTopUsers">
-				<img ng-src="{{user.sUserImage}}" class="user-image"/>
-				<br />
-				<div>{{user.sUser}}</div>
-			</div>
-		</div>
-		</center>
-		
-		<h2><u>Top Artists</u></h2>
-		<center>
-		<div layout="row" layout-wrap>
-			<div flex="30" ng-repeat="artist in data.aTopArtists">
-				<img ng-src="{{artist.sArtistImage}}" class="user-image"/>
-				<br />
-				<div>{{artist.sArtist}}</div>
-			</div>
-		</div>
-		</center>
-		
-		<!--
-		<h2><u>Top Artists</u></h2>
-		 <md-grid-list
-			md-cols-gt-md="3" md-cols="3" md-cols-md="3"
-			md-row-height-gt-md="1:1" md-row-height="1:1"
-			md-gutter-gt-md="16px" md-gutter-md="8px" md-gutter="4px">
-		  <md-grid-tile
-			  ng-repeat="artist in data.aTopArtists"
-			  md-colspan-gt-sm="1"
-			  md-rowspan-gt-sm="1">
-			  <img ng-src="{{artist.sArtistImage}}" class="user-image"/>
-			  <br />
-			  <div>{{artist.sArtist}}</div>
-		  </md-grid-tile>
-		</md-grid-list>
-		-->
-		</section>
-		
-		<md-nav-bar md-no-ink-bar="disableInkBar" md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
-		  <span flex></span>
-		  <md-nav-item md-nav-click="goto('1')" name="page1">
-			Now Playing
-		  </md-nav-item>
-		  <md-nav-item md-nav-click="goto('2')" name="page2" ng-disabled="secondTabDisabled">
-			Leaderboard
-		  </md-nav-item>
-		  <!--
-		  <md-nav-item md-nav-click="goto('page3')" name="page3">
-			Page Three
-		  </md-nav-item>
-		  <md-nav-item md-nav-click="goto('page4')" name="page4" disabled="">
-			Page Four
-		  </md-nav-item>
-		  -->
-		  <!-- these require actual routing with ui-router or ng-route, so they
-		  won't work in the demo
-		  <md-nav-item md-nav-href="#page4" name="page5">Page Four</md-nav-item>
-		  <md-nav-item md-nav-sref="app.page5" name="page4">Page Five</md-nav-item>
-		  You can also add options for the <code>ui-sref-opts</code> attribute.
-		  <md-nav-item md-nav-sref="page6" sref-opts="{reload:true, notify:true}">
-			Page Six
-		  </md-nav-item>
-		  -->
-		  <span flex></span>
-		</md-nav-bar>
-	  </md-content>
-	 
-	</div>
+<head>
+	<meta charset="utf-8">
+	<title>Rockbot (Seena Remix)</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/x-icon" href="img/favicon.ico">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.10/angular-material.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
 	
-	<!-- Using these CDN resources in order to keep bundle.js size small: -->
+<body>
+	<div ng-controller="AppCtrl" ng-cloak="" class="navBardemoBasicUsage" layout="column" layout-fill>
+		<md-content flex> 
+			<!-- TOP TITLE BAR -->
+			<md-toolbar class="md-hue-4">		
+				<div class="md-toolbar-tools">
+					<md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
+						<img src="img/logo.png" style="height: 100%;" />
+					</md-button>
+					<h2 flex md-truncate>mini rockbot</h2>
+				</div>
+			</md-toolbar>
+			
+			<!-- LOADER -->
+			<section ng-if="!data">
+				<center>
+					<img src="img/loader.gif" class="loader" />
+				</center>
+			</section>
+			
+			<!-- "NOW PLAYING" VIEW -->
+			<section ng-if="data && page == 1">
+				<!-- Current Song -->
+				<md-card md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch>
+					<md-card-title>
+						<md-card-title-text>				
+							<span class="md-subhead"><b>{{data.aNowPlaying.sArtist}}</b></span>
+							<span class="md-headline">{{data.aNowPlaying.sSong}}</span>
+						</md-card-title-text>
+						<md-card-title-media>
+							<div class="md-media-sm card-media" style="background: url('{{data.aNowPlaying.sArtwork}}');"></div>
+						</md-card-title-media>
+					</md-card-title>
+				</md-card>
+			  
+				<!-- Up Next -->
+				<md-list flex>
+					<md-subheader class="md-no-sticky">Up Next...</md-subheader>
+					<md-list-item class="md-3-line" ng-repeat="item in data.aQueue" ng-click="null">
+						<img ng-src="{{item.sArtwork}}?{{$index}}" class="md-avatar" alt="{{item.sArtist}}" />
+						<div class="md-list-item-text" layout="column">
+							<h3><b>{{ item.sArtist }}</b></h3>
+							<p>{{ item.sSong }}</p>
+							<div class="md-secondary green-text"><span ng-if="item.iLikes > 0">+</span>{{ item.iLikes }}</div>
+						</div>
+					</md-list-item>
+					
+					<md-list-item class="md-3-line" ng-repeat="item in data.aQueue" ng-click="null">
+						<img ng-src="{{item.sArtwork}}?{{$index}}" class="md-avatar" alt="{{item.sArtist}}" />
+						<div class="md-list-item-text" layout="column">
+							<h3><b>{{ item.sArtist }}</b></h3>
+							<p>{{ item.sSong }}</p>
+							<div class="md-secondary green-text"><span ng-if="item.iLikes > 0">+</span>{{ item.iLikes }}</div>
+						</div>
+					</md-list-item>
+				</md-list>
+			</section>
+			
+			<!-- "LEADERBOARD" VIEW -->
+			<section ng-if="data && page == 2" class="layout-padding">
+				<h2><u>Top Users</u></h2>
+				<center>
+					<div layout="row" layout-wrap>
+						<div flex="30" ng-repeat="user in data.aTopUsers">
+							<img ng-src="{{user.sUserImage}}" class="user-image"/>
+							<br />
+							<div>{{user.sUser}}</div>
+						</div>
+					</div>
+				</center>
+				
+				<h2><u>Top Artists</u></h2>
+				<center>
+					<div layout="row" layout-wrap>
+						<div flex="30" ng-repeat="artist in data.aTopArtists">
+							<img ng-src="{{artist.sArtistImage}}" class="user-image"/>
+							<br />
+							<div>{{artist.sArtist}}</div>
+						</div>
+					</div>
+				</center>
+			</section>
+		</md-content>
+	  
+		<!-- BOTTOM NAV BAR -->  
+		<footer class="md-scroll-shrink">
+			<div layout="row" layout-align="center center" flex>
+				<md-nav-bar md-no-ink-bar="disableInkBar" md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+					<span flex></span>
+					<md-nav-item md-nav-click="goto('1')" name="page1">
+						Now Playing
+					</md-nav-item>
+					<md-nav-item md-nav-click="goto('2')" name="page2">
+						Leaderboard
+					</md-nav-item>
+					<span flex></span>
+				</md-nav-bar>
+			</div>
+		</footer>
+	</div>
+
+	<!-- Importing AngularJS via CDN in order to keep bundle.js filesize small: -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular-animate.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular-route.min.js"></script>
@@ -188,7 +120,8 @@
 	<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js"></script>
 	<script src="https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.10/angular-material.js"></script>
 
+	<!-- Main JS file, built via webpack: -->
 	<script src="bundle.js"></script>	
 
-	</body>
+</body>
 </html>

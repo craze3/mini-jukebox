@@ -44,6 +44,9 @@ var app = angular.module('MyApp', ['ngMaterial', 'ngMessages', 'material.svgAsse
 		//console.log("Updated $scope.data! = ", $scope.data);
 	});
 
+	// Set the active nav tab:
+	$scope.currentNavItem = 'page1';
+
 	// Function for switching between views:
 	$scope.goto = function(page) {
 		$scope.page = page;
