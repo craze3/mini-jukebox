@@ -35,7 +35,9 @@ var app = angular.module('MyApp', ['ngMaterial', 'ngMessages', 'material.svgAsse
 // Main Controller
 //******************************************************************************/
 .controller('AppCtrl', ['$scope', 'Poller', function($scope, Poller) {
+	// Set the active nav tab:
 	$scope.page = 1;
+	$scope.currentNavItem = 'page1';
 
 	// Call the API polling service:
 	Poller.poller(function(data) {
@@ -43,9 +45,6 @@ var app = angular.module('MyApp', ['ngMaterial', 'ngMessages', 'material.svgAsse
 		$scope.data = data;
 		//console.log("Updated $scope.data! = ", $scope.data);
 	});
-
-	// Set the active nav tab:
-	$scope.currentNavItem = 'page1';
 
 	// Function for switching between views:
 	$scope.goto = function(page) {
